@@ -1,5 +1,8 @@
 package com.adanali.spring.springpractice.EcosystemAndCore;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -13,14 +16,22 @@ public class NotificationService {
     /*private EmailNotificationSender sender = new EmailNotificationSender();*/
 
     // 2nd Approach : Adding some Abstraction, But the client has to wire things up
+    @Resource(name = "smsNotificationSender")
     private NotificationSender sender;
 
-    @Autowired
-    public NotificationService(@Qualifier("emailNotificationSender") NotificationSender sender){
-        this.sender = sender;
-    }
+    public NotificationService(){}
 
     public void notifyUser(String message){
         sender.send(message);
+    }
+
+    @PostConstruct
+    private void init(){
+        System.out.println("All the dependencies for the NotificationService are injected.");
+    }
+
+    @PreDestroy
+    private void cleanUp(){
+        System.out.println("No resource to clean in the Notification Service.!");
     }
 }

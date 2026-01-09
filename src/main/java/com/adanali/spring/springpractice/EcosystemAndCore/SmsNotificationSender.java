@@ -7,10 +7,17 @@ import org.springframework.stereotype.Component;
 
 /*@Primary
 @Component*/
-@Named
+//@Named
 public class SmsNotificationSender implements NotificationSender{
+
+    String operatingSystem;
+
+    SmsNotificationSender(String operatingSystem){
+        this.operatingSystem = operatingSystem;
+    }
+
     @Override
     public void send(String message) {
-        System.out.println("Sms send : "+message);
+        System.out.println("Sms sent via "+operatingSystem+": "+message);
     }
 }

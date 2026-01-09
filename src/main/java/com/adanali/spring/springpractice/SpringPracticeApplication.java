@@ -1,7 +1,9 @@
 package com.adanali.spring.springpractice;
 
+import com.adanali.spring.springpractice.EcosystemAndCore.ApplicationConfig;
 import com.adanali.spring.springpractice.EcosystemAndCore.NotificationService;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringPracticeApplication {
@@ -16,7 +18,7 @@ public class SpringPracticeApplication {
 
         // Approach 3 : Let Spring do the heavy-lifting
         ConfigurableApplicationContext context =
-                new ClassPathXmlApplicationContext("applicationContext.xml");
+                new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
         NotificationService service =
                 context.getBean("notificationService", NotificationService.class);

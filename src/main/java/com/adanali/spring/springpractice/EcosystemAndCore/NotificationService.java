@@ -16,8 +16,8 @@ public class NotificationService {
     // 2nd Approach : Adding some Abstraction, But the client has to wire things up
     private NotificationSender sender;
 
-    @Inject
-    @Named("emailNotificationSender")
+    /*@Inject
+    @Named("emailNotificationSender")*/
     public NotificationService(NotificationSender sender){
         this.sender = sender;
     }

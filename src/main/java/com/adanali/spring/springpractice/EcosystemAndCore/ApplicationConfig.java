@@ -1,7 +1,10 @@
 package com.adanali.spring.springpractice.EcosystemAndCore;
 
+import jakarta.inject.Named;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -9,9 +12,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @PropertySource("classpath:application.properties")
 public class ApplicationConfig {
-    
-    @Value("${notificationService}")
-    String serviceToUse;
+
     @Value("#{systemProperties['os.name']}")
     String operatingSystem;
 
@@ -25,14 +26,16 @@ public class ApplicationConfig {
         return new SmsNotificationSender(operatingSystem);
     }
 
-    @Bean
-    NotificationService notificationService(){
-        return switch (serviceToUse){
-            case "email" -> new NotificationService(emailNotificationSender());
-            case "sms" -> new NotificationService(smsNotificationService());
-            default -> throw new IllegalStateException("Unexpected value: " + serviceToUse);
-        };
-         
+    @Bean(name = "notificationService")
+    @ConditionalOnExpression("'${notificationService}' == 'email'")
+    NotificationService notificationService1(){
+        return new NotificationService(emailNotificationSender());
+    }
+
+    @Bean(name = "notificationService")
+    @ConditionalOnExpression("'${notificationService}' == 'sms'")
+    NotificationService notificationService2(){
+        return new NotificationService(smsNotificationService());
     }
 
     @Bean

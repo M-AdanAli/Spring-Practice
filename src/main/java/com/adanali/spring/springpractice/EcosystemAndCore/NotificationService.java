@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 // 3rd Approach : Let Spring do the heavy-lifting
 /*@Component*/
-@Named
+//@Named
 public class NotificationService {
     // 1st Approach : Coupling with a specific-implementation
     /*private EmailNotificationSender sender = new EmailNotificationSender();*/
@@ -26,12 +26,12 @@ public class NotificationService {
         sender.send(message);
     }
 
-    @PostConstruct
+//    @PostConstruct
     private void init(){
         System.out.println("All the dependencies for the NotificationService are injected.");
     }
 
-    @PreDestroy
+//    @PreDestroy
     private void cleanUp(){
         System.out.println("No resource to clean in the Notification Service.!");
     }

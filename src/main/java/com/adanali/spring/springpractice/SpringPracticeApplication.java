@@ -8,23 +8,24 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringPracticeApplication {
 
-    public static void main(String[] args) {
-        // In Approach 2, Client will have to do the wiring
-        /*NotificationSender sender =
-                new EmailNotificationSender();
+    static void main(String[] args) {
 
-        NotificationService service =
-                new NotificationService(sender);*/
+        // <-------  Module 1 (Ecosystem And Core)  ------->
+
+        // In Approach 2, Client will have to do the wiring
+        /*NotificationSender sender = new EmailNotificationSender();
+        NotificationService service = new NotificationService(sender);*/
 
         // Approach 3 : Let Spring do the heavy-lifting
-        ConfigurableApplicationContext context =
-                new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        /*ConfigurableApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
-        NotificationService service =
-                context.getBean("notificationService", NotificationService.class);
+        NotificationService service = context.getBean("notificationService", NotificationService.class);
 
         service.notifyUser("Welcome!");
-        context.close();
+        context.close();*/
+
+        // <-------  Module 2 (Spring MVC, Spring Boot, Spring REST)  ------->
+
     }
 
 }

@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
-@Configuration
-@PropertySource("classpath:application.properties")
+//@Configuration
+//@PropertySource("classpath:application.properties")
 public class ApplicationConfig {
 
-    @Value("#{systemProperties['os.name']}")
+    /*@Value("#{systemProperties['os.name']}")
     String operatingSystem;
 
     @Bean
@@ -41,6 +41,6 @@ public class ApplicationConfig {
     @Bean
     static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
         return new PropertySourcesPlaceholderConfigurer();
-    }
+    }*/
 
 }

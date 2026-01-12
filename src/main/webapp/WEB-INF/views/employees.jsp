@@ -7,5 +7,8 @@
                 <li>${emp.name} - ${emp.role}</li>
             </c:forEach>
         </ul>
+        <h2> <a href="${pageContext.request.contextPath}/employees/new">
+            Add New Employee
+        </a> </h2>
     </body>
 </html>

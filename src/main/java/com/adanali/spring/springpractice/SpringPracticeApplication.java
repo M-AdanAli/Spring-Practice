@@ -12,11 +12,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 @SpringBootApplication
-@ComponentScan("com.adanali.spring.springpractice.MVCBootAndREST.MVCBoot")
+//@ComponentScan("com.adanali.spring.springpractice.MVCBootAndREST.MVCBoot")
+@ComponentScan("com.adanali.spring.springpractice.MVCBootAndREST.REST")
 public class SpringPracticeApplication extends SpringBootServletInitializer {
 
-    /*static void main(String[] args) {
-
+    static void main(String[] args) {
+/*
         // <-------  Module 1 (Ecosystem And Core)  ------->
 
         // In Approach 2, Client will have to do the wiring
@@ -32,16 +33,14 @@ public class SpringPracticeApplication extends SpringBootServletInitializer {
         context.close();*//*
 
         // <-------  Module 2 (Spring MVC, Spring Boot, Spring REST)  ------->
-        SpringApplication.run(SpringPracticeApplication.class, args);
-    }
-*/
-    public static void main(String[] args) {
+        */
         SpringApplication.run(SpringPracticeApplication.class, args);
     }
 
+    /* For MVC with no Boot
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         // point to this class as the main configuration
         return builder.sources(SpringPracticeApplication.class);
-    }
+    }*/
 }

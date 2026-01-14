@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: "/office"
+  port: 8081

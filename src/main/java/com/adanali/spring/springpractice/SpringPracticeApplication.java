@@ -2,19 +2,30 @@ package com.adanali.spring.springpractice;
 
 import com.adanali.spring.springpractice.EcosystemAndCore.ApplicationConfig;
 import com.adanali.spring.springpractice.EcosystemAndCore.NotificationService;
+import com.adanali.spring.springpractice.MVCBootAndREST.REST.config.AppProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 //@ComponentScan("com.adanali.spring.springpractice.MVCBootAndREST.MVCBoot")
 @ComponentScan("com.adanali.spring.springpractice.MVCBootAndREST.REST")
-public class SpringPracticeApplication extends SpringBootServletInitializer {
+@EnableConfigurationProperties(AppProperties.class)
+@RestController
+public class SpringPracticeApplication /*extends SpringBootServletInitializer*/ {
+
+    @Autowired
+    AppProperties appProperties;
 
     static void main(String[] args) {
 /*
@@ -43,4 +54,11 @@ public class SpringPracticeApplication extends SpringBootServletInitializer {
         // point to this class as the main configuration
         return builder.sources(SpringPracticeApplication.class);
     }*/
+    @GetMapping
+    public String appInfo(){
+        return """
+                Application Name : %s
+                Application Version : %s 
+                """.formatted(appProperties.getName(),appProperties.getVersion());
+    }
 }

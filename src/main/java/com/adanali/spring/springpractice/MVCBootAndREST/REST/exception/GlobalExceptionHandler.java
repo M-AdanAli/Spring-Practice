@@ -14,8 +14,8 @@ import java.util.NoSuchElementException;
 public class GlobalExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNotFound(NoSuchElementException ex, HttpServletRequest request) {
-        return "Employee Not Found!";
+    public ResponseEntity<Object> handleNotFound(NoSuchElementException ex, HttpServletRequest request) {
+        return ResponseEntity.badRequest().body("There is no employee with this ID.");
     }
 
     @ExceptionHandler(Exception.class)

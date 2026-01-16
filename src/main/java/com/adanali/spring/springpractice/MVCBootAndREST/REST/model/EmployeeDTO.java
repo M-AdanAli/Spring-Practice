@@ -1,9 +1,11 @@
 package com.adanali.spring.springpractice.MVCBootAndREST.REST.model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import org.springframework.stereotype.Component;
 
 @Component
+@XmlRootElement(name = "employee")
 public class EmployeeDTO {
     @NotBlank
     private String name;

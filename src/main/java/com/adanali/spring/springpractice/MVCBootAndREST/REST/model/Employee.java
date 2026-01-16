@@ -1,5 +1,9 @@
 package com.adanali.spring.springpractice.MVCBootAndREST.REST.model;
 
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "employee")
 public class Employee {
     private long id;
     private String name;
@@ -11,6 +15,9 @@ public class Employee {
         this.role = role;
     }
 
+    public Employee(){}
+
+    @XmlElement(name = "id")
     public long getId() {
         return id;
     }
@@ -19,6 +26,7 @@ public class Employee {
         this.id = id;
     }
 
+    @XmlElement(name = "name")
     public String getName() {
         return name;
     }
@@ -27,6 +35,7 @@ public class Employee {
         this.name = name;
     }
 
+    @XmlElement(name = "role")
     public String getRole() {
         return role;
     }
